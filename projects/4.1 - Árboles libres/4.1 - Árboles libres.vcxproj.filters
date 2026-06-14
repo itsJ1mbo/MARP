@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\4-1_Arboles_libres.cpp">
+    <ClCompile Include="..\..\src\4-1-Arboles-libres.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

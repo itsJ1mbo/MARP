@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\4-5-Los-numeros-de-Bacon.cpp">
+    <ClCompile Include="..\..\src\8-1-Agujeros-en-la-manguera.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
