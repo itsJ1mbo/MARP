@@ -23,15 +23,15 @@ using namespace std;
  // Escribe el código completo de tu solución aquí debajo
  // ================================================================
  //@ <answer>
-int patin_rec(string const& patitos, int i, int j, Matriz<int>& patin) {
+int vacas_rec(string const& patitos, int i, int j, Matriz<int>& patin) {
     int& res = patin[i][j];
     if (res == -1) {
         if (i > j || i == j) res = 0;
         else if (patitos[i] == patitos[j])
-            res = patin_rec(patitos, i + 1, j - 1, patin);
+            res = vacas_rec(patitos, i + 1, j - 1, patin);
         else
-            res = min(patin_rec(patitos, i + 1, j, patin) + 1,
-                patin_rec(patitos, i, j - 1, patin) + 1);
+            res = min(vacas_rec(patitos, i + 1, j, patin) + 1,
+                vacas_rec(patitos, i, j - 1, patin) + 1);
     }
     return res;
 }
@@ -71,7 +71,7 @@ bool resuelveCaso() {
 
     Matriz<int> patindromo(n, n, -1);
 
-    cout << patin_rec(p, 0, n - 1, patindromo) << ' ';
+    cout << vacas_rec(p, 0, n - 1, patindromo) << ' ';
 
     string sol;
     reconstruir(p, patindromo, 0, n - 1, sol);

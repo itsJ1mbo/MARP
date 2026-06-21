@@ -23,9 +23,9 @@ using namespace std;
  // Escribe el código completo de tu solución aquí debajo
  // ================================================================
  //@ <answer>
-struct Objeto { int profundidad; double valor; };
+struct Festival { int profundidad; double precio; };
 
-double mochila_rec(vector<Objeto> const& obj, int i, int j, Matriz<double>& mochila) 
+double mochila_rec(vector<Festival> const& obj, int i, int j, Matriz<double>& mochila) 
 {
     if (mochila[i][j] != -1) // subproblema ya resuelto
         return mochila[i][j];
@@ -34,11 +34,11 @@ double mochila_rec(vector<Objeto> const& obj, int i, int j, Matriz<double>& moch
         mochila[i][j] = mochila_rec(obj, i - 1, j, mochila);
     else
         mochila[i][j] = max(mochila_rec(obj, i - 1, j, mochila),
-            mochila_rec(obj, i - 1, j - (obj[i - 1].profundidad + 2 * obj[i - 1].profundidad), mochila) + obj[i - 1].valor);
+            mochila_rec(obj, i - 1, j - (obj[i - 1].profundidad + 2 * obj[i - 1].profundidad), mochila) + obj[i - 1].precio);
     return mochila[i][j];
 }
 
-double mochila(vector<Objeto> const& objetos, int M, vector<bool>& sol, int& a) 
+double mochila(vector<Festival> const& objetos, int M, vector<bool>& sol, int& a) 
 {
     int n = objetos.size();
     Matriz<double> mochila(n + 1, M + 1, -1);
@@ -64,10 +64,10 @@ bool resuelveCaso() {
     if (!std::cin)  // fin de la entrada
         return false;
 
-    std::vector<Objeto> cofres(N);
+    std::vector<Festival> cofres(N);
     for (int i = 0; i < N; i++)
     {
-        std::cin >> cofres[i].profundidad >> cofres[i].valor;
+        std::cin >> cofres[i].profundidad >> cofres[i].precio;
     }
 
     int n = 0;
@@ -77,7 +77,7 @@ bool resuelveCaso() {
     for (int i = 0; i < N; i++)
     {
         if (sol[i])
-            std::cout << cofres[i].profundidad << " " << cofres[i].valor << "\n";
+            std::cout << cofres[i].profundidad << " " << cofres[i].precio << "\n";
     }
     std::cout << "---\n";
 
