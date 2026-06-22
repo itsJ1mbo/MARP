@@ -25,27 +25,27 @@ using namespace std;
  // Escribe el código completo de tu solución aquí debajo
  // ================================================================
  //@ <answer>
-struct Pelicula {
+struct Restaurante {
     int inicio;  
     int fin;     
     int duracion; 
 };
 
-int cine_rec(const std::vector<Pelicula>& pelis, int i, vector<int>& dp) 
+int autopista_rec(const std::vector<Restaurante>& rest, int i, vector<int>& dp) 
 {
     if (i < 0) return 0;
     if (dp[i] == -1)
     {
-        if (i == 0) dp[i] = pelis[i].duracion;
+        if (i == 0) dp[i] = rest[i].duracion;
         else
         {
-            auto it = upper_bound(pelis.begin(), pelis.begin() + i, pelis[i].inicio,
-                [](int val, Pelicula const& p) {
+            auto it = upper_bound(rest.begin(), rest.begin() + i, rest[i].inicio,
+                [](int val, Restaurante const& p) {
                     return val < p.fin;
                 });
-            int p = it - pelis.begin() - 1;
+            int p = it - rest.begin() - 1;
 
-        	dp[i] = max(cine_rec(pelis, i - 1, dp), pelis[i].duracion + cine_rec(pelis, p, dp));
+        	dp[i] = max(autopista_rec(rest, i - 1, dp), rest[i].duracion + autopista_rec(rest, p, dp));
         }
     }
 
@@ -61,7 +61,7 @@ bool resuelveCaso() {
     if (N == 0)  // fin de la entrada
         return false;
 
-    std::vector<Pelicula> pelis(N);
+    std::vector<Restaurante> pelis(N);
     for (int i = 0; i < N; ++i)
     {
         int dia, horas, minutos, duracion;
@@ -76,12 +76,12 @@ bool resuelveCaso() {
         pelis[i] = { inicio_abs, fin_abs, duracion };
     }
 
-    std::sort(pelis.begin(), pelis.end(), [](Pelicula const& a, Pelicula const& b) {
+    std::sort(pelis.begin(), pelis.end(), [](Restaurante const& a, Restaurante const& b) {
         return a.fin < b.fin;
         });
 
     std::vector<int> dp(N, -1);
-    std::cout << cine_rec(pelis, N - 1, dp) << "\n";
+    std::cout << autopista_rec(pelis, N - 1, dp) << "\n";
 
     return true;
 }

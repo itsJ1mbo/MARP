@@ -26,7 +26,7 @@ using namespace std;
  // Escribe el código completo de tu solución aquí debajo
  // ================================================================
  //@ <answer>
-struct Pelicula
+struct Restaurante
 {
     string nombre;
 	vector<string> actores;
@@ -83,7 +83,7 @@ bool resuelveCaso() {
     std::unordered_map<string, int> nodes;
     int nNodes = 0;
 
-	std::vector<Pelicula> peliculas(N);
+	std::vector<Restaurante> peliculas(N);
 	for (int i = 0; i < N; ++i)
 	{
 		std::cin >> peliculas[i].nombre;
